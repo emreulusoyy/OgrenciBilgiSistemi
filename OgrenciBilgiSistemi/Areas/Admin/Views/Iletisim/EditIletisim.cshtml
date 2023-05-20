@@ -1,0 +1,74 @@
+﻿@model OBSEntityLayer.NewConcrete.Iletisim
+@{
+    ViewData["Title"] = "EditIletisim";
+    Layout = "~/Areas/Admin/Views/AdminLayout.cshtml";
+}
+
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">İletişim</h6>
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#">İletişim</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">İletişim Düzenle</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--6">
+
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <h3 class="mb-0">İletişim Güncelle </h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="form-group">
+                    <label>İletişim ID</label>
+                    @Html.TextBoxFor(x => x.IletisimID, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Adres</label>
+                    @Html.TextBoxFor(x => x.Adres, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>İl</label>
+                    @Html.TextBoxFor(x => x.Il, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>İlçe</label>
+                    @Html.TextBoxFor(x => x.Ilce, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>E mail</label>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>GSM  </label>
+                    @Html.TextBoxFor(x => x.Gsm, new { @class = "form-control" })
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                <button class="btn btn-dark">İptal</button>
+
+                <!-- Address -->
+
+            </form>
+
+        </div>
+    </div>
+</div>
+

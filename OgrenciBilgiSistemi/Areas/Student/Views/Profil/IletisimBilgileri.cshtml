@@ -1,0 +1,68 @@
+﻿@model EntityLayer.Concrete.Kullanicilar
+@{
+    ViewData["Title"] = "IletisimBilgileri";
+    Layout = "~/Areas/Student/Views/StudentLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">İletişim Bilgilerim</h4>
+                <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    ADRES
+                                </th>
+                                <th>
+                                    İL
+                                </th>
+                                <th>
+                                    İLÇE
+                                </th>
+                                <th>
+                                    EMAİL
+                                </th>
+                                <th>
+                                    GSM
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-info">
+                                <td>
+                                    @Model.Kimlik.IletisimID
+                                </td>
+                                <td>
+                                    @Model.Kimlik.Iletisim.Adres
+                                </td>
+                                <td>
+                                    @Model.Kimlik.Iletisim.Il
+                                </td>
+                                <td>
+                                    @Model.Kimlik.Iletisim.Ilce
+                                </td>
+                                <td>
+                                    @Model.Kimlik.Iletisim.Email
+                                </td>
+                                <td>
+                                    @Model.Kimlik.Iletisim.Gsm
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <br />
+                <a href="~/Student/Profil/IletisimGuncelle/@Model.Kimlik.IletisimID" class="btn btn-success">Güncelle </a>
+            </div>
+        </div>
+    </div>
+</div>
+

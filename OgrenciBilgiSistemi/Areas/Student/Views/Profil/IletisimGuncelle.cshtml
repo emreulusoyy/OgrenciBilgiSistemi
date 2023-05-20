@@ -1,0 +1,40 @@
+﻿@model EntityLayer.Concrete.Kullanicilar
+@{
+    ViewData["Title"] = "IletisimGuncelle";
+    Layout = "~/Areas/Student/Views/StudentLayout.cshtml";
+}
+
+<form method="post">
+    <div class="form-group">
+        @Html.HiddenFor(x => x.Kimlik.KimlikID, new { @class = "form-control" })
+        <label>İletişim ID</label>
+        @Html.TextBoxFor(x => x.Kimlik.IletisimID, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Adres</label>
+        @Html.TextBoxFor(x => x.Kimlik.Iletisim.Adres, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>İl</label>
+        @Html.TextBoxFor(x => x.Kimlik.Iletisim.Il, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>İlçe</label>
+        @Html.TextBoxFor(x => x.Kimlik.Iletisim.Ilce, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>E mail</label>
+        @Html.TextBoxFor(x => x.Kimlik.Iletisim.Email, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>GSM  </label>
+        @Html.TextBoxFor(x => x.Kimlik.Iletisim.Gsm, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+    <button class="btn btn-dark">İptal</button>
+
+    <!-- Address -->
+
+</form>
+
