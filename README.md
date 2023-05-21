@@ -10,7 +10,6 @@ Admin öğrenci eklediğinde öğrendiye random bir öğrenci numarası atanıyo
 
 Admin panelinde de öğrencinin aldığı dersler görünüyor Alındı olarak beliriyor.
 
-![10](https://github.com/emreulusoyy/OgrenciBilgiSistemi/assets/116696047/6a947676-e6c1-4664-993f-335d3297bdbc)
 
 
 
