@@ -10,13 +10,7 @@ namespace OgrenciBilgiSistemi.Areas.Admin.Controllers
     public class KimlikController : Controller
     {
         KimlikManager km = new KimlikManager(new EfKimlikDal());
-        [Route("")]
-        [Route("Index")]
-        public IActionResult Index()
-        {
-            var values = km.TGetList();
-            return View(values);
-        }
+
 
         [Route("")]
         [Route("EditKimlik/{id}")]
@@ -33,33 +27,9 @@ namespace OgrenciBilgiSistemi.Areas.Admin.Controllers
         public IActionResult EditKimlik(Kimlik p)
         {
             km.TUpdate(p);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Ogrenci", new { Area = "Admin" });
         }
 
-        [Route("")]
-        [Route("AddKimlik")]
-        [HttpGet]
-        public IActionResult AddKimlik()
-        {
-            return View();
-        }
 
-        [Route("")]
-        [Route("AddKimlik")]
-        [HttpPost]
-        public IActionResult AddKimlik(Kimlik p)
-        {
-            km.TInsert(p);
-            return RedirectToAction("Index");
-        }
-
-        [Route("")]
-        [Route("DeleteKimlik/{id}")]
-        public IActionResult DeleteKimlik(int id)
-        {
-            var values = km.TGetByID(id);
-            km.TDelete(values);
-            return RedirectToAction("Index");
-        }
     }
 }

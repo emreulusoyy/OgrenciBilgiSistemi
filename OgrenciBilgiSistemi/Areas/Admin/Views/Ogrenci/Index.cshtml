@@ -31,14 +31,14 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="budget">Öğrenci ID</th>
-                                <th scope="col" class="sort" data-sort="budget">Öğrenci No</th>
-                                <th scope="col" class="sort" data-sort="status">Kimlik Bilgileri</th>
-
-                                <th scope="col" class="sort" data-sort="completion">Müfredat Bilgileri</th>
-                                <th scope="col" class="sort" width="0%" data-sort="completion">Güncelle</th>
-                                <th scope="col" class="sort" width="0%" data-sort="completion">Sil</th>
-                                <th scope="col"></th>
+                                <th width="0%" scope="col" class="sort" data-sort="budget">Öğrenci ID</th>
+                                <th width="40%" scope="col" class="sort" data-sort="budget">Öğrenci</th>
+                                <th width="40%" scope="col" class="sort" data-sort="budget">Öğrenci No</th>
+                                <th width="0%" scope="col" class="sort" data-sort="status">Kimlik Bilgileri</th>
+                                <th width="0%" scope="col" class="sort" data-sort="status">İletişim Bilgileri</th>
+                                <th width="0%" scope="col" class="sort" data-sort="completion">Müfredat Bilgileri</th>
+                                <th width="0%" scope="col" class="sort"  data-sort="completion">Sil</th>
+                                <th width="0%" scope="col"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
@@ -52,6 +52,9 @@
                                         @x.OgrenciID
                                     </td>
                                     <td class="budget">
+                                        @x.Kimlik.Ad @x.Kimlik.Soyad
+                                    </td>
+                                    <td class="budget">
                                         @x.OgrenciNo
                                     </td>
 
@@ -60,9 +63,11 @@
 
                                     </td>
                                     <td class="budget">
-                                       <a href="~/Admin/Mufredat/EditMufredat/@x.MufredatID" class="btn btn-secondary">Görüntüle </a>
+                                       <a href="~/Admin/Iletisim/EditIletisim/@x.Kimlik.IletisimID" class="btn btn-secondary">Görüntüle </a>
                                     </td>
-                                    <td> <a href="~/Admin/Ogrenci/EditOgrenci/@x.OgrenciID" class="btn btn-primary">Güncelle </a> </td>
+                                    <td class="budget">
+                                        <a href="~/Admin/Mufredat/OgrenciMufredat/@x.OgrenciID" class="btn btn-secondary">Görüntüle </a>
+                                    </td>
                                     <td>
                                         <a href="~/Admin/Ogrenci/DeleteOgrenci/@x.OgrenciID" class="btn btn-danger">Sil </a>
 

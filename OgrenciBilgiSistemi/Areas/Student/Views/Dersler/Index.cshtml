@@ -1,4 +1,5 @@
-﻿@model List< OBSEntityLayer.NewConcrete.MufredatDersler>
+﻿@using OgrenciBilgiSistemi.Models;
+@model List<DersDurumModel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Student/Views/StudentLayout.cshtml";
@@ -17,9 +18,13 @@
                                     #
                                 </th>
                                 <th>
+                                    Ders Kodu
+                                </th>
+                                <th>
                                     Ders Adı
                                 </th>
-                                 <th>
+
+                                <th>
                                     Ekle
                                 </th>
 
@@ -27,22 +32,41 @@
                         </thead>
 
                         <tbody>
-                            @foreach(var x in Model)
+                            @foreach (var x in Model)
                             {
-                                
-                            
-                            <tr class="table-info">
 
-                                <td>
-                                    @x.Dersler.DerslerID
-                                </td>
-                                <td>
-                                 @x.Dersler.Adi
-                                </td>
-                                     <td>
-                                       <a href="" class="btn btn-primary" >Ekle</a>
+
+                                <tr class="table-info">
+
+                                    <td>
+                                        @x.DerslerID
                                     </td>
-                            </tr>
+                                    <td>
+                                        @x.Kodu
+                                    </td>
+                                    <td>
+                                        @x.Adi
+                                    </td>
+                                    @if (x.Durum)
+                                    {
+                                        <td>
+                                            <button disabled class="btn btn-primary">Alındı</button>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <form method="post">
+
+                                                <input name="OgrenciID" value="@ViewBag.OgrenciID" hidden>
+                                                <input name="DerslerID" value="@x.DerslerID" hidden>
+                                                <button type="submit" class="btn btn-primary">Ekle</button>
+                                            </form>
+                                        </td>
+                                    }
+
+                                </tr>
+
                             }
                         </tbody>
                     </table>

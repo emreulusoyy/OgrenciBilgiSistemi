@@ -37,8 +37,7 @@
         <div class="card-body">
             <form method="post">
                 <div class="form-group">
-                    <label>İletişim ID</label>
-                    @Html.TextBoxFor(x => x.IletisimID, new { @class = "form-control" })
+                    @Html.HiddenFor(x => x.IletisimID, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
                     <label>Adres</label>
@@ -62,7 +61,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
-                <button class="btn btn-dark">İptal</button>
+                <a href="/Admin/Ogrenci/index" class="btn btn-dark">İptal</a>
 
                 <!-- Address -->
 

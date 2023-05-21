@@ -1,7 +1,13 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json.Linq;
 using OBSEntityLayer.NewConcrete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OgrenciBilgiSistemi.Areas.Admin.Controllers
 {
@@ -10,6 +16,7 @@ namespace OgrenciBilgiSistemi.Areas.Admin.Controllers
     public class DerslerController : Controller
     {
         DerslerManager dm = new DerslerManager(new EfDerslerDal());
+        MufredatDerslerManager mm = new MufredatDerslerManager(new EfMufredatDerslerDal());
 
         [Route("")]
         [Route("Index")]
@@ -62,5 +69,72 @@ namespace OgrenciBilgiSistemi.Areas.Admin.Controllers
             dm.TDelete(values);
             return RedirectToAction("Index");
         }
+
+        [Route("")]
+        [Route("MufredatDersler/{id}")]
+        [HttpGet]
+        public IActionResult MufredatDersler(int id)
+        {
+            Context context = new Context();
+            var mufredatDersler = context.Set<MufredatDersler>().Where(x => x.MufredatID == id).ToList();
+            List<Dersler> dersList = new List<Dersler>();
+            foreach (var item in mufredatDersler)
+            {
+                var ders = context.Set<Dersler>().Where(x => x.DerslerID == item.DerslerID).FirstOrDefault();
+                dersList.Add(ders);
+            }
+            ViewBag.Dersler = dersList;
+            ViewBag.MufredatID = id;
+
+            var tumDersler = context.Set<Dersler>().ToList();
+            List<Dersler> mufredatDısıDersler = new List<Dersler>();
+            foreach (var item in tumDersler)
+            {
+                if (!dersList.Contains(item))
+                {
+                    mufredatDısıDersler.Add(item);
+                }
+            }
+
+            List<SelectListItem> mufredatDısıDerslerList = new List<SelectListItem>();
+            foreach (var item in mufredatDısıDersler)
+            {
+                var derss = new SelectListItem
+                {
+                    Text = item.Adi,
+                    Value = item.DerslerID.ToString()
+                };
+                mufredatDısıDerslerList.Add(derss);
+            }
+            ViewBag.mufredatDısıDersler = mufredatDısıDerslerList;
+
+            return View();
+        }
+
+        [Route("")]
+        [Route("MufredatDersler/{id}")]
+        [HttpPost]
+        public IActionResult MufredatDersler(MufredatDersler mufredatDersler)
+        {
+
+            mm.TInsert(mufredatDersler);
+
+            return RedirectToAction("MufredatDersler", new { id = mufredatDersler.MufredatID });
+        }
+
+        //[Route("")]
+        //[Route("mufredatDersSil/{id}")]
+        //[HttpPost]
+        //public IActionResult mufredatDersSil(MufredatDersler mufredatDersler)
+        //{
+
+        //    mm.TDelete(mufredatDersler);
+
+        //    return RedirectToAction("MufredatDersler", new { id = mufredatDersler.MufredatID });
+        //}
+
+        
+
+
     }
 }

@@ -1,0 +1,107 @@
+﻿@model OBSEntityLayer.NewConcrete.MufredatDersler
+@{
+    ViewData["Title"] = "MufredatDersler";
+    Layout = "~/Areas/Admin/Views/AdminLayout.cshtml";
+}
+
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">Müfredata Ait Dersler</h6>
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#">Müfredat Bilgileri</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Müfredata Ait Dersler</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--6">
+
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <h3 class="mb-0">Müfredata Ait Dersler </h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th width="0%" scope="col" class="sort" data-sort="budget">#</th>
+                            <th width="20%" scope="col" class="sort" data-sort="budget">Ders Kodu</th>
+                            <th width="80%" scope="col" class="sort" data-sort="budget">Ders</th>
+                            <th width="80%" scope="col" class="sort" data-sort="budget">Sil</th>
+                            
+                           
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        @{
+                            int count = 0;
+                        }
+                        @foreach (var x in ViewBag.Dersler)
+                        {
+                            count++;
+                            <form method="post" asp-action="mufredatDersSil" asp-controller="MufredatDersler" asp-area="Admin">
+                                <input hidden name="DerslerID" value="@x.DerslerID">
+                                <input hidden name="MufredatID" value="@ViewBag.MufredatID" />
+                            <tr>
+                                <td>@count</td>
+                                <td class="budget">
+                                    @x.Kodu
+                                </td>
+                                <td class="budget">
+                                    @x.Adi
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-danger">Sil </button>
+
+                                </td>
+                            </tr>
+                            </form>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <br />
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <h3 class="mb-0">Müfredata Ders Ekle </h3>
+                    </div>
+                </div>
+            </div>
+            <form method="post" >
+                
+                <input name="MufredatID" hidden value="@ViewBag.MufredatID" />
+
+                <div class="form-group">
+                    <label>Ders</label>
+                    @Html.DropDownListFor(m => m.DerslerID, (List<SelectListItem>)ViewBag.mufredatDısıDersler, new { @class = "form-control" })
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2">Ekle</button>
+
+
+                <!-- Address -->
+
+            </form>
+
+        </div>
+    </div>
+</div>
+

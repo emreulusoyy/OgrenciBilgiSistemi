@@ -1,7 +1,14 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OBSEntityLayer.NewConcrete;
+using OgrenciBilgiSistemi.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace OgrenciBilgiSistemi.Areas.Admin.Controllers
 {
@@ -19,22 +26,42 @@ namespace OgrenciBilgiSistemi.Areas.Admin.Controllers
         }
 
         [Route("")]
-        [Route("EditMufredat/{id}")]
+        [Route("OgrenciMufredat/{id}")]
         [HttpGet]
-        public IActionResult EditMufredat(int id)
+        public IActionResult OgrenciMufredat(int id) //ogrenciID
         {
-            var values = mm.TGetByID(id);
-            return View(values);
+            Context context = new Context();
+            var ogrenci = context.Set<Ogrenci>().Where(x=>x.OgrenciID == id).Include(x=>x.Mufredat).FirstOrDefault();
+            var derskayıtList = context.Set<DersKayit>().Where(x=>x.OgrenciID == ogrenci.OgrenciID ).ToList();
+
+            var mufredatDersler = context.Set<MufredatDersler>().Where(x => x.MufredatID == ogrenci.MufredatID).Include(x=>x.Dersler).ToList();
+            
+            List<DersDurumModel> dersDurums = new List<DersDurumModel>();
+
+            foreach (var item in mufredatDersler)
+            {
+                var dersDurum = new DersDurumModel()
+                {
+                    DerslerID = item.DerslerID,
+                    Adi = item.Dersler.Adi,
+                    Kodu = item.Dersler.Kodu,
+                    Durum = false
+                };
+
+                if (context.Set<DersKayit>().Where(x=>x.OgrenciID == id && x.DerslerID == item.DerslerID).FirstOrDefault() != null)
+                {
+                    dersDurum.Durum = true;
+                }
+                dersDurums.Add(dersDurum);
+            }
+            ViewBag.Mufredat = ogrenci.Mufredat.MufredatAdi;
+
+
+
+            return View(dersDurums);
         }
 
-        [Route("")]
-        [Route("EditMufredat/{id}")]
-        [HttpPost]
-        public IActionResult EditMufredat(Mufredat p)
-        {
-            mm.TUpdate(p);
-            return RedirectToAction("Index");
-        }
+
 
         [Route("")]
         [Route("AddMufredat")]

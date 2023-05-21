@@ -1,4 +1,4 @@
-﻿using EntityLayer.Concrete;
+﻿ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OBSEntityLayer.NewConcrete;
@@ -15,7 +15,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-VO9M4VR\\SQLEXPRESS;initial catalog=AtilimYeni; integrated security=true");
+            optionsBuilder.UseSqlServer("server=DESKTOP-VO9M4VR\\SQLEXPRESS;initial catalog=AtilimDB; integrated security=true");
         }
           public DbSet<DersKayit> DersKayit { get; set; }
 

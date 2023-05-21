@@ -31,9 +31,9 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col" class="sort" data-sort="budget">ID</th>
-                                <th scope="col" class="sort" data-sort="budget">Müfredat Adı</th>
-                                
+                                <th width="40%" scope="col" class="sort" data-sort="budget">ID</th>
+                                <th width="40%" scope="col" class="sort" data-sort="budget">Müfredat Adı</th>
+                                <th scope="col" class="sort" width="0%" data-sort="completion">Dersler</th>
                                 <th scope="col" class="sort" width="0%" data-sort="completion">Güncelle</th>
                                 <th scope="col" class="sort" width="0%" data-sort="completion">Sil</th>
                                 <th scope="col"></th>
@@ -43,21 +43,21 @@
                             @foreach (var x in Model)
                             {
 
-
                                 <tr>
-
                                     <td class="budget">
                                         @x.MufredatID
                                     </td>
                                     <td class="budget">
                                         @x.MufredatAdi
                                     </td>
-
+                                    <td> <a href="~/Admin/Dersler/MufredatDersler/@x.MufredatID" class="btn btn-primary">Dersler</a> </td>
+                  
                                     <td> <a href="~/Admin/Mufredat/EditMufredat/@x.MufredatID" class="btn btn-primary">Güncelle </a> </td>
                                     <td>
                                         <a href="~/Admin/Mufredat/DeleteMufredat/@x.MufredatID" class="btn btn-danger">Sil </a>
 
                                     </td>
+                            
 
                                 </tr>
                             }
