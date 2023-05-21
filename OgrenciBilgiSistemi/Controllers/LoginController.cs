@@ -39,7 +39,7 @@ namespace OgrenciBilgiSistemi.Controllers
 
                     if (await _userManager.IsInRoleAsync(kullanici, "Admin"))
                     {
-                        return RedirectToAction("Index", "Iletisim", new { Area = "Admin" });
+                        return RedirectToAction("Index", "Profil", new { Area = "Admin" });
                     }
                     else
                     {
